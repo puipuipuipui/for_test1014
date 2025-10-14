@@ -134,12 +134,12 @@ const MainChat = ({
                   loading={isLoading}
                   className={styles.sendBtn}
                 >
-                  發送
+                  
                 </Button>
               </div>
-              <div className={styles.hint}>
+              {/* <div className={styles.hint}>
                 💡 提示：使用 @ 提及知識庫，使用 # 搜尋歷史對話
-              </div>
+              </div> */}
             </Space>
           </div>
         </div>

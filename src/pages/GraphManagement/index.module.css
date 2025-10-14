@@ -1,8 +1,11 @@
 /* src/pages/GraphManagement/index.module.css */
 
 .layout {
-  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  overflow: hidden;
 }
 
 /* Header */
@@ -14,6 +17,8 @@
   align-items: center;
   height: auto !important;
   line-height: normal !important;
+  flex-shrink: 0;
+  z-index: 10;
 }
 
 .brandLogo {
@@ -31,6 +36,26 @@
 /* Content */
 .content {
   padding: 32px;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: rgba(203, 213, 225, 0.8);
+  border-radius: 4px;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.8);
 }
 
 .container {
@@ -40,80 +65,5 @@
   border-radius: 16px;
   padding: 24px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-  min-height: calc(100vh - 128px);
-}
-
-/* Tab Pane */
-.tabPane {
-  padding: 24px 0;
-}
-
-/* Cards */
-.uploadCard,
-.previewCard {
-  border-radius: 16px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  height: 100%;
-}
-
-.cardHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0;
-}
-
-.cardHeader h4 {
-  margin: 0 !important;
-  font-size: 16px;
-}
-
-/* 響應式 */
-@media (max-width: 1200px) {
-  .content {
-    padding: 24px 16px;
-  }
-  
-  .container {
-    padding: 20px;
-  }
-}
-
-@media (max-width: 992px) {
-  .tabPane {
-    padding: 16px 0;
-  }
-}
-
-@media (max-width: 768px) {
-  .header {
-    padding: 12px 16px !important;
-    flex-wrap: wrap;
-  }
-
-  .content {
-    padding: 16px;
-  }
-
-  .container {
-    padding: 16px;
-    min-height: auto;
-  }
-
-  .brandLogo {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-  }
-
-  .tabPane {
-    padding: 12px 0;
-  }
-
-  .cardHeader {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
+  min-height: 600px;
 }

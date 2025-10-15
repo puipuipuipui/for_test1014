@@ -105,7 +105,7 @@ function App() {
   // 全局主題配置
   const themeConfig = {
     token: {
-      colorPrimary: '#667eea',
+      colorPrimary: '#666666',
       borderRadius: 12,
       fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', sans-serif"
     }

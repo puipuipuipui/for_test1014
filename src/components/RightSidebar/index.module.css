@@ -62,12 +62,13 @@
   color: #475569;
 }
 
+
 .tab.active {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+  /* background: rgba(0, 0, 0, 0.08); 改為灰色半透明背景 */
   border-color: #333333;
-  color: #333333;
+  color: #ffffff;
   font-weight: 600;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* 改為灰色陰影 */
 }
 
 .closeBtn {

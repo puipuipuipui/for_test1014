@@ -189,7 +189,7 @@ a:hover {
 }
 
 .ant-btn-primary:hover:not(:disabled) {
-  background:  #666666;
+  background:  #333333;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
   transform: translateY(-2px);
 }

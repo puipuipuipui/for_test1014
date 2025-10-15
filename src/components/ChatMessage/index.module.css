@@ -80,7 +80,7 @@
 /* 串流游標動畫 */
 .cursor {
   display: inline-block;
-  color: #667eea;
+  color: #666666;
   animation: blink 1s step-end infinite;
   font-weight: bold;
   margin-left: 2px;

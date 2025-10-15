@@ -32,7 +32,7 @@ const RightSidebar = ({
               activeChat.traces.map(trace => (
                 <Card key={trace.id} size="small" className={styles.traceCard}>
                   <div className={styles.traceHeader}>
-                    <Tag color={trace.usedKG ? 'purple' : 'blue'}>
+                    <Tag color={trace.usedKG ? 'purple' : '#333333'}>
                       {trace.usedKG ? '知識圖譜模式' : '文件檢索模式'}
                     </Tag>
                     <Text type="secondary" className={styles.traceTime}>

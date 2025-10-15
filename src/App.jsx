@@ -13,7 +13,6 @@ import {
 import LeftSidebar from './components/LeftSidebar';
 import MainChat from './components/MainChat';
 import RightSidebar from './components/RightSidebar';
-import GraphManagement from './pages/GraphManagement';
 import { useChat } from './hooks/useChat';
 import { INITIAL_CHATS, AGENTS as AGENTS_DATA, TABS } from './utils/constants';
 import styles from './App.module.css';
@@ -40,7 +39,7 @@ const AGENTS = AGENTS_DATA.map(agent => {
 function App() {
   // 頁面路由狀態
   const [currentPage, setCurrentPage] = useState('chat'); // 'chat' or 'graph'
-  
+
   // 聊天頁面狀態
   const [leftCollapsed, setLeftCollapsed] = useState(false);
   const [rightExpanded, setRightExpanded] = useState(false);
@@ -75,10 +74,9 @@ function App() {
     finishEdit
   } = useChat(INITIAL_CHATS, AGENTS);
 
-  // 開啟圖譜管理
+  // 開啟知識圖譜管理（新分頁）
   const openGraphManagement = () => {
-    setCurrentPage('graph');
-    setRightExpanded(false); // 關閉右側面板
+    window.open('/graph-management', '_blank');
   };
 
   // 返回聊天頁面
@@ -108,18 +106,19 @@ function App() {
       borderRadius: 12,
       fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', sans-serif"
     }
+
   };
 
   // 如果在圖譜管理頁面
   if (currentPage === 'graph') {
     return (
       <ConfigProvider theme={themeConfig}>
-        <GraphManagement onBack={backToChat} />
+        <GraphManagement  />
+        {/* onBack={backToChat} */}
       </ConfigProvider>
     );
   }
 
-  // 聊天頁面
   return (
     <ConfigProvider theme={themeConfig}>
       <Layout className={styles.layout}>

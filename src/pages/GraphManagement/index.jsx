@@ -1,14 +1,14 @@
 // src/pages/GraphManagement/index.jsx
 import React, { useState } from 'react';
-import { 
-  Layout, 
-  Card, 
-  Button, 
-  Upload, 
-  Space, 
-  Progress, 
-  Tag, 
-  Empty, 
+import {
+  Layout,
+  Card,
+  Button,
+  Upload,
+  Space,
+  Progress,
+  Tag,
+  Empty,
   Statistic,
   Modal,
   message,
@@ -188,8 +188,8 @@ const GraphManagement = ({ onBack }) => {
 
                   <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 12 }}>
                     <Button onClick={resetAll}>重置</Button>
-                    <Button 
-                      type="primary" 
+                    <Button
+                      type="primary"
                       size="large"
                       onClick={startProcessing}
                       loading={isProcessing}
@@ -208,7 +208,7 @@ const GraphManagement = ({ onBack }) => {
                 <Space direction="vertical" style={{ width: '100%' }} size="large">
                   <div className={styles.cardHeader}>
                     <Title level={4}>圖譜預覽</Title>
-                    <Button 
+                    <Button
                       type="primary"
                       onClick={publishToKnowledge}
                       disabled={!processedData}
@@ -221,8 +221,8 @@ const GraphManagement = ({ onBack }) => {
                   <Row gutter={16}>
                     <Col span={8}>
                       <Card size="small" style={{ textAlign: 'center' }}>
-                        <Statistic 
-                          title="節點數" 
+                        <Statistic
+                          title="節點數"
                           value={processedData?.nodes || 0}
                           prefix={<DatabaseOutlined />}
                         />
@@ -230,8 +230,8 @@ const GraphManagement = ({ onBack }) => {
                     </Col>
                     <Col span={8}>
                       <Card size="small" style={{ textAlign: 'center' }}>
-                        <Statistic 
-                          title="關係數" 
+                        <Statistic
+                          title="關係數"
                           value={processedData?.edges || 0}
                           prefix={<DatabaseOutlined />}
                         />
@@ -239,8 +239,8 @@ const GraphManagement = ({ onBack }) => {
                     </Col>
                     <Col span={8}>
                       <Card size="small" style={{ textAlign: 'center' }}>
-                        <Statistic 
-                          title="覆蓋主題" 
+                        <Statistic
+                          title="覆蓋主題"
                           value={processedData?.topics?.length || 0}
                         />
                       </Card>
@@ -250,15 +250,15 @@ const GraphManagement = ({ onBack }) => {
                   {/* 處理進度 */}
                   {isProcessing && (
                     <Card size="small" style={{ background: '#f8fafc' }}>
-                      <Progress 
-                        percent={Math.floor(progress)} 
+                      <Progress
+                        percent={Math.floor(progress)}
                         status={progress >= 100 ? 'success' : 'active'}
                         strokeColor={{ '0%': '#667eea', '100%': '#764ba2' }}
                       />
                       <Text type="secondary" style={{ display: 'block', textAlign: 'center', marginTop: 12 }}>
-                        {progress < 30 ? '解析檔案結構...' : 
-                         progress < 60 ? '建立節點與關係...' :
-                         progress < 90 ? '生成圖譜摘要...' : '處理完成'}
+                        {progress < 30 ? '解析檔案結構...' :
+                          progress < 60 ? '建立節點與關係...' :
+                            progress < 90 ? '生成圖譜摘要...' : '處理完成'}
                       </Text>
                     </Card>
                   )}
@@ -267,6 +267,15 @@ const GraphManagement = ({ onBack }) => {
                   {processedData ? (
                     <Card size="small">
                       <Space direction="vertical" style={{ width: '100%' }} size="middle">
+
+                        <div>
+                          <Title level={5} style={{ fontSize: 14, marginBottom: 12 }}>預留圖譜預覽</Title>
+                          <div className={styles.graphPlaceholder}>
+                            圖譜視覺化示意圖
+                          </div>
+                        </div>
+
+
                         <div>
                           <Title level={5} style={{ fontSize: 14, marginBottom: 12 }}>重要節點</Title>
                           <Space wrap>
@@ -291,7 +300,7 @@ const GraphManagement = ({ onBack }) => {
                       </Space>
                     </Card>
                   ) : (
-                    <Empty 
+                    <Empty
                       description="完成處理後會顯示互動節點示意"
                       image={Empty.PRESENTED_IMAGE_SIMPLE}
                     />
@@ -308,7 +317,7 @@ const GraphManagement = ({ onBack }) => {
       label: <span><FileTextOutlined /> 新增知識</span>,
       children: (
         <div className={styles.tabPane}>
-          <Empty 
+          <Empty
             description="新增知識功能開發中"
             image={Empty.PRESENTED_IMAGE_SIMPLE}
             style={{ padding: '60px 0' }}
@@ -336,8 +345,8 @@ const GraphManagement = ({ onBack }) => {
                     borderRadius: 12,
                     border: '1px solid #e2e8f0',
                     marginBottom: 16,
-                    borderLeft: item.status === 'success' ? '4px solid #52c41a' : 
-                                item.status === 'warning' ? '4px solid #faad14' : '4px solid #ff4d4f'
+                    borderLeft: item.status === 'success' ? '4px solid #52c41a' :
+                      item.status === 'warning' ? '4px solid #faad14' : '4px solid #ff4d4f'
                   }}
                   actions={[
                     <Button type="text" danger icon={<DeleteOutlined />}>
@@ -376,16 +385,16 @@ const GraphManagement = ({ onBack }) => {
     <Layout className={styles.layout}>
       <Header className={styles.header}>
         <Space size="large">
-          {onBack && (
-            <Button 
-              type="text" 
+          {/* {onBack && (
+            <Button
+              type="text"
               icon={<LeftOutlined />}
               onClick={onBack}
               style={{ fontWeight: 500 }}
             >
               返回對話
             </Button>
-          )}
+          )} */}
           <Space>
             <div className={styles.brandLogo}>
               <DatabaseOutlined />

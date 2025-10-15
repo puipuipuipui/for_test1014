@@ -1,11 +1,12 @@
 // src/components/MainChat/index.jsx
+
 import React from 'react';
-import { Button, Input, Space, Badge, Dropdown } from 'antd';
-import {
-  SendOutlined,
-  CloseOutlined,
+import { Button, Input, Space, Select } from 'antd';
+import { 
+  SendOutlined, 
+  CloseOutlined, 
   LayoutOutlined,
-  CheckOutlined
+  StopOutlined
 } from '@ant-design/icons';
 import ChatMessage from '../ChatMessage';
 import styles from './index.module.css';
@@ -13,72 +14,58 @@ import styles from './index.module.css';
 const { TextArea } = Input;
 
 const MainChat = ({
-  currentAgent,
-  onAgentChange,
-  agents,
-  rightExpanded,
-  onToggleRight,
   activeChat,
-  isLoading,
-  messagesEndRef,
+  currentAgent,
+  agents,
   inputValue,
+  isLoading,
+  isStreaming,
+  streamingMessage,
+  rightExpanded,
+  messagesEndRef,
+  inputRef,
+  onAgentChange,
   onInputChange,
   onSend,
-  inputRef
+  onToggleRight,
+  onCancelRequest
 }) => {
-  const currentAgentInfo = agents.find(a => a.value === currentAgent) || agents[0];
-
-  const agentMenu = {
-    items: agents.map(agent => ({
-      key: agent.value,
-      label: (
-        <Space direction="vertical" style={{ padding: '4px 0', width: '100%' }}>
-          <Space style={{ width: '100%', justifyContent: 'space-between' }}>
-            <Space>
-              {agent.icon}
-              <strong>{agent.name}</strong>
-            </Space>
-            {agent.value === currentAgent && (
-              <CheckOutlined style={{ color: '#52c41a' }} />
-            )}
-          </Space>
-          <div style={{ fontSize: 12, color: '#64748b', paddingLeft: 24 }}>
-            {agent.desc}
-          </div>
-        </Space>
-      ),
-      onClick: () => onAgentChange(agent.value)
-    }))
-  };
-
+  
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
-      
       e.preventDefault();
-      onSend();
+      if (!isLoading && !isStreaming) {
+        onSend();
+      }
     }
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.mainChat}>
       {/* Header */}
       <header className={styles.header}>
-        <Dropdown menu={agentMenu} trigger={['click']}>
-          <Button type="text" className={styles.agentTrigger}>
-            <Space>
-              {currentAgentInfo.icon}
-              <div className={styles.agentInfo}>
-                <div className={styles.agentLabel}>當前代理</div>
-                <div className={styles.agentName}>{currentAgentInfo.name}</div>
-              </div>
-            </Space>
-          </Button>
-        </Dropdown>
-
+        <Space size="middle">
+          <span className={styles.chatTitle}>
+            {activeChat?.title || '選擇或建立對話'}
+          </span>
+          <Select
+            value={currentAgent}
+            onChange={onAgentChange}
+            style={{ minWidth: 180 }}
+            options={agents.map(agent => ({
+              value: agent.value,
+              label: (
+                <Space>
+                  {agent.icon}
+                  <span>{agent.name}</span>
+                </Space>
+              )
+            }))}
+          />
+        </Space>
         <Space>
-          <Badge status="processing" text="知識庫已連接" />
           <Button
-            type="text"
+            type={rightExpanded ? "default" : "primary"}
             icon={rightExpanded ? <CloseOutlined /> : <LayoutOutlined />}
             onClick={onToggleRight}
           >
@@ -89,12 +76,26 @@ const MainChat = ({
 
       {/* Messages */}
       <div className={styles.messages}>
-        <div className={styles.messagesInner}>
+        <div className={styles.messagesInner} style={{ overflowY: 'auto', height: '100%' }}>
           {activeChat?.messages.map((msg, idx) => (
             <ChatMessage key={idx} message={msg} />
           ))}
           
-          {isLoading && (
+          {/* 串流中的訊息 */}
+          {isStreaming && streamingMessage && (
+            <div className={styles.streamingMessage}>
+              <ChatMessage 
+                message={{
+                  role: 'assistant',
+                  content: streamingMessage,
+                  isStreaming: true
+                }}
+              />
+            </div>
+          )}
+          
+          {/* 載入中但還沒開始串流 */}
+          {isLoading && !isStreaming && !streamingMessage && (
             <div className={styles.loadingMessage}>
               <ChatMessage 
                 message={{
@@ -124,23 +125,34 @@ const MainChat = ({
                   placeholder="輸入您的問題... (Shift + Enter 換行)"
                   autoSize={{ minRows: 2, maxRows: 6 }}
                   className={styles.textarea}
-                  disabled={isLoading}
+                  disabled={isLoading || isStreaming}
                 />
-                <Button
-                  type="primary"
-                  icon={<SendOutlined />}
-                  onClick={onSend}
-                  size="large"
-                  disabled={!inputValue.trim() || isLoading}
-                  loading={isLoading}
-                  className={styles.sendBtn}
-                >
-                  
-                </Button>
+                
+                {/* 發送或取消按鈕 */}
+                {isStreaming ? (
+                  <Button
+                    danger
+                    icon={<StopOutlined />}
+                    onClick={onCancelRequest}
+                    size="large"
+                    className={styles.sendBtn}
+                  >
+                    停止
+                  </Button>
+                ) : (
+                  <Button
+                    type="primary"
+                    icon={<SendOutlined />}
+                    onClick={onSend}
+                    size="large"
+                    disabled={!inputValue.trim() || isLoading}
+                    loading={isLoading && !isStreaming}
+                    className={styles.sendBtn}
+                  >
+                    
+                  </Button>
+                )}
               </div>
-              {/* <div className={styles.hint}>
-                💡 提示：使用 @ 提及知識庫，使用 # 搜尋歷史對話
-              </div> */}
             </Space>
           </div>
         </div>

@@ -1,45 +1,50 @@
 // src/components/ChatMessage/index.jsx
+
 import React from 'react';
-import { Avatar, Card, Typography, Space } from 'antd';
-import { UserOutlined, RobotOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 import styles from './index.module.css';
 
-const { Text } = Typography;
-
 const ChatMessage = ({ message }) => {
-  const { role, content, timestamp, isLoading } = message;
-  const isUser = role === 'user';
+  const isUser = message.role === 'user';
+  const isLoading = message.isLoading;
+  const isStreaming = message.isStreaming;
 
   return (
     <div className={`${styles.message} ${isUser ? styles.user : styles.assistant}`}>
-      <Avatar 
-        size={40}
-        className={styles.avatar}
-        icon={isUser ? <UserOutlined /> : <RobotOutlined />}
-      />
-      <Card className={styles.bubble} bordered={false}>
-        <div className={styles.header}>
-          <Text strong className={styles.role}>
-            {isUser ? '您' : 'AI 助理'}
-          </Text>
-          {timestamp && (
-            <Text type="secondary" className={styles.timestamp}>
-              {timestamp}
-            </Text>
-          )}
-        </div>
-        <div className={styles.content}>
+      {/* <div className={styles.avatar}>
+        {isUser ? <UserOutlined /> : <RobotOutlined />}
+      </div> */}
+      <div className={styles.content}>
+        <div className={styles.bubble}>
           {isLoading ? (
             <Space>
-              <div className={styles.loadingDot} />
-              <div className={styles.loadingDot} style={{ animationDelay: '0.2s' }} />
-              <div className={styles.loadingDot} style={{ animationDelay: '0.4s' }} />
+              <Spin indicator={<LoadingOutlined spin />} size="small" />
+              <span>正在思考...</span>
             </Space>
           ) : (
-            content
+            <>
+              {/* 使用 dangerouslySetInnerHTML 或直接顯示，視你的需求 */}
+              <div className={styles.text}>
+                {message.content.split('\n').map((line, i) => (
+                  <React.Fragment key={i}>
+                    {line}
+                    {i < message.content.split('\n').length - 1 && <br />}
+                  </React.Fragment>
+                ))}
+              </div>
+              
+              {/* 串流中的游標效果 */}
+              {isStreaming && (
+                <span className={styles.cursor}>▋</span>
+              )}
+            </>
           )}
         </div>
-      </Card>
+        {message.timestamp && !isLoading && (
+          <div className={styles.timestamp}>{message.timestamp}</div>
+        )}
+      </div>
     </div>
   );
 };

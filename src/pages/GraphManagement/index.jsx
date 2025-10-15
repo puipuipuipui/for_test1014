@@ -253,7 +253,7 @@ const GraphManagement = ({ onBack }) => {
                       <Progress
                         percent={Math.floor(progress)}
                         status={progress >= 100 ? 'success' : 'active'}
-                        strokeColor={{ '0%': '#667eea', '100%': '#764ba2' }}
+                        strokeColor={{ '0%': '#666666', '100%': '#666666' }}
                       />
                       <Text type="secondary" style={{ display: 'block', textAlign: 'center', marginTop: 12 }}>
                         {progress < 30 ? '解析檔案結構...' :
@@ -280,7 +280,7 @@ const GraphManagement = ({ onBack }) => {
                           <Title level={5} style={{ fontSize: 14, marginBottom: 12 }}>重要節點</Title>
                           <Space wrap>
                             {processedData.nodesSample.map((node, idx) => (
-                              <Tag key={idx} color="blue">{node}</Tag>
+                              <Tag key={idx} color="#666666">{node}</Tag>
                             ))}
                           </Space>
                         </div>

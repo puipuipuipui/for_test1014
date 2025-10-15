@@ -1,40 +1,40 @@
-/* src/styles/variables.css */
+/* src/styles/variables.css - 白灰黑簡約配色 */
 
 :root {
   /* === 主色彩 === */
-  --primary-color: #667eea;
-  --primary-dark: #5568d3;
-  --primary-light: #8b9ef5;
-  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --primary-color: #333333;
+  --primary-dark: #1a1a1a;
+  --primary-light: #666666;
+  --primary-gradient: #666666;
   
-  --secondary-color: #764ba2;
-  --success-color: #10b981;
-  --success-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  --warning-color: #f59e0b;
-  --error-color: #ef4444;
-  --info-color: #3b82f6;
+  --secondary-color: #666666;
+  --success-color: #333333;
+  --success-gradient: linear-gradient(135deg, #333333 0%, #1a1a1a 100%);
+  --warning-color: #666666;
+  --error-color: #333333;
+  --info-color: #555555;
   
   /* === 文字顏色 === */
-  --text-primary: #1e293b;
-  --text-secondary: #475569;
-  --text-tertiary: #64748b;
-  --text-muted: #94a3b8;
-  --text-disabled: #cbd5e1;
+  --text-primary: #1a1a1a;
+  --text-secondary: #333333;
+  --text-tertiary: #666666;
+  --text-muted: #999999;
+  --text-disabled: #cccccc;
   --text-white: #ffffff;
   
   /* === 背景顏色 === */
   --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc;
-  --bg-tertiary: #f1f5f9;
-  --bg-hover: #e2e8f0;
-  --bg-active: #cbd5e1;
-  --bg-disabled: #f1f5f9;
+  --bg-secondary: #fafafa;
+  --bg-tertiary: #f5f5f5;
+  --bg-hover: #eeeeee;
+  --bg-active: #e0e0e0;
+  --bg-disabled: #f5f5f5;
   
   /* === 邊框顏色 === */
-  --border-color: #e2e8f0;
-  --border-hover: #cbd5e1;
-  --border-active: #94a3b8;
-  --border-focus: #667eea;
+  --border-color: #e5e5e5;
+  --border-hover: #cccccc;
+  --border-active: #999999;
+  --border-focus: #333333;
   
   /* === 陰影 === */
   --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -45,11 +45,11 @@
   --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   
   /* 特殊陰影 */
-  --shadow-primary: 0 4px 12px rgba(102, 126, 234, 0.25);
-  --shadow-primary-lg: 0 6px 16px rgba(102, 126, 234, 0.35);
-  --shadow-success: 0 4px 12px rgba(16, 185, 129, 0.25);
-  --shadow-warning: 0 4px 12px rgba(245, 158, 11, 0.25);
-  --shadow-error: 0 4px 12px rgba(239, 68, 68, 0.25);
+  --shadow-primary: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-primary-lg: 0 6px 16px rgba(0, 0, 0, 0.2);
+  --shadow-success: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-warning: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-error: 0 4px 12px rgba(0, 0, 0, 0.15);
   
   /* === 間距 === */
   --spacing-xs: 4px;
@@ -158,12 +158,12 @@
   --opacity-disabled: 0.6;
   --opacity-hover: 0.8;
   
-  /* === 漸變背景 === */
-  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  --gradient-warning: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  --gradient-error: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-  --gradient-info: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  /* === 背景 === */
+  --gradient-primary: #666666 ;
+  --gradient-success: #666666;
+  --gradient-warning: #666666;
+  --gradient-error: #666666;
+  --gradient-info: #666666;
   
   /* === 背景模糊 === */
   --backdrop-blur-sm: blur(4px);
@@ -174,16 +174,16 @@
 
 /* 深色模式變數（預留） */
 [data-theme="dark"] {
-  --text-primary: #f1f5f9;
-  --text-secondary: #cbd5e1;
-  --text-tertiary: #94a3b8;
-  --text-muted: #64748b;
+  --text-primary: #f5f5f5;
+  --text-secondary: #e0e0e0;
+  --text-tertiary: #cccccc;
+  --text-muted: #999999;
   
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --bg-tertiary: #334155;
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #262626;
+  --bg-tertiary: #333333;
   
-  --border-color: #334155;
-  --border-hover: #475569;
-  --border-active: #64748b;
+  --border-color: #404040;
+  --border-hover: #525252;
+  --border-active: #666666;
 }

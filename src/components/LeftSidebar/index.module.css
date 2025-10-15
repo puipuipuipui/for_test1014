@@ -1,4 +1,4 @@
-/* src/components/LeftSidebar/index.module.css */
+/* src/components/LeftSidebar/index.module.css - 白灰黑配色 */
 
 .container {
   display: flex;
@@ -20,12 +20,12 @@
 }
 
 .content::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #cccccc;
   border-radius: 3px;
 }
 
 .content::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #f5f5f5;
 }
 
 /* Header */
@@ -37,20 +37,20 @@
 }
 
 .brandAvatar {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  background:  #666666 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .brandName {
   font-weight: 700;
   font-size: 16px;
-  color: #1e293b;
+  color: #1a1a1a;
   line-height: 1.2;
 }
 
 .brandSub {
   font-size: 12px;
-  color: #64748b;
+  color: #666666;
   line-height: 1.2;
   margin-top: 2px;
 }
@@ -63,8 +63,8 @@
 }
 
 .collapseBtn:hover {
-  background: #f1f5f9;
-  color: #667eea;
+  background: #f5f5f5;
+  color: #333333;
 }
 
 /* New Chat Button */
@@ -73,32 +73,32 @@
   height: 44px;
   border-radius: 12px;
   font-weight: 600;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: all 0.3s;
 }
 
 .newChatBtn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.35);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
 /* Search Input */
 .searchInput {
   margin-bottom: 20px;
   border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #e5e5e5;
 }
 
 .searchInput:hover,
 .searchInput:focus-within {
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: #333333;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
 }
 
 /* Section Title */
 .sectionTitle {
   font-size: 12px;
-  color: #64748b;
+  color: #666666;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin: 20px 0 12px;
@@ -122,13 +122,13 @@
 }
 
 .chatList::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #cccccc;
   border-radius: 2px;
 }
 
 .chatItem {
   padding: 14px 16px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #e5e5e5;
   border-radius: 12px;
   background: #ffffff;
   cursor: pointer;
@@ -140,15 +140,15 @@
 }
 
 .chatItem:hover {
-  background: #f8fafc;
-  border-color: #cbd5e1;
+  background: #fafafa;
+  border-color: #cccccc;
   transform: translateX(4px);
 }
 
 .chatItem.active {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-  border-color: #667eea;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+  background: rgba(0, 0, 0, 0.05);
+  border-color: #333333;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .chatItem.active:hover {
@@ -163,7 +163,7 @@
 .chatTitle {
   font-weight: 600;
   font-size: 14px;
-  color: #1e293b;
+  color: #1a1a1a;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -172,7 +172,7 @@
 
 .chatMeta {
   font-size: 12px;
-  color: #64748b;
+  color: #666666;
 }
 
 .editInput {
@@ -190,9 +190,9 @@
 
 /* User Section */
 .userSection {
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid #e5e5e5;
   padding: 16px;
-  background: #f8fafc;
+  background: #fafafa;
 }
 
 .userSummary {
@@ -204,17 +204,17 @@
   cursor: pointer;
   transition: all 0.2s;
   background: #ffffff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #e5e5e5;
 }
 
 .userSummary:hover {
-  background: #f1f5f9;
-  border-color: #cbd5e1;
+  background: #f5f5f5;
+  border-color: #cccccc;
   transform: scale(1.02);
 }
 
 .userAvatar {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  background:  #666666 !important;
   flex-shrink: 0;
 }
 
@@ -226,7 +226,7 @@
 .userName {
   font-weight: 600;
   font-size: 14px;
-  color: #1e293b;
+  color: #1a1a1a;
   margin-bottom: 2px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -235,20 +235,20 @@
 
 .userEmail {
   font-size: 12px;
-  color: #64748b;
+  color: #666666;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .settingIcon {
-  color: #94a3b8;
+  color: #999999;
   font-size: 16px;
   transition: all 0.2s;
 }
 
 .userSummary:hover .settingIcon {
-  color: #667eea;
+  color: #333333;
   transform: rotate(30deg);
 }
 

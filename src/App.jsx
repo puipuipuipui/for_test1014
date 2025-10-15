@@ -59,6 +59,8 @@ function App() {
     searchQuery,
     setSearchQuery,
     isLoading,
+    isStreaming,
+    streamingMessage,
     editingChatId,
     editTitle,
     setEditTitle,
@@ -68,6 +70,7 @@ function App() {
     activeChat,
     filteredChats,
     handleSend,
+    cancelRequest,
     createNewChat,
     deleteChat,
     startEdit,
@@ -113,7 +116,7 @@ function App() {
   if (currentPage === 'graph') {
     return (
       <ConfigProvider theme={themeConfig}>
-        <GraphManagement  />
+        <GraphManagement />
         {/* onBack={backToChat} */}
       </ConfigProvider>
     );
@@ -165,9 +168,12 @@ function App() {
               isLoading={isLoading}
               messagesEndRef={messagesEndRef}
               inputValue={inputValue}
+              isStreaming={isStreaming}
+              streamingMessage={streamingMessage}
               onInputChange={setInputValue}
               onSend={handleSend}
               inputRef={inputRef}
+              onCancelRequest={cancelRequest}
             />
           </Content>
         </Layout>

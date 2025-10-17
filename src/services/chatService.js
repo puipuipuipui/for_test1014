@@ -22,6 +22,8 @@ export const sendChatMessage = async ({
     onChunk,
     onThinking,
     onRouting,
+    onKgData,
+    onExecutionLog,
     onComplete,
     onError
 }) => {
@@ -113,7 +115,7 @@ export const sendChatMessage = async ({
                                     break;
                                 }
                             }
-                            
+
 
                             if (onChunk && actualContent) {
                                 onChunk(actualContent);
@@ -135,8 +137,16 @@ export const sendChatMessage = async ({
                                 });
                             }
                         } else if (status === 'execution_log') {
-                            // 執行日誌（debug 用）
+                            // 執行日誌
                             console.log('Execution Log:', data.content);
+                            if (onExecutionLog) onExecutionLog(data.content);
+
+                        } else if (status === 'kg_data') {
+                            // 知識圖譜資料
+                            console.log('✅ [前端] 收到 kg_data:', data.content);
+                            if (onKgData) onKgData(data.content);
+
+
                         } else if (status === 'done') {
                             // 完成
                             console.log('完成:', data);

@@ -18,6 +18,7 @@ export const useChat = () => {
   });
 
   const [currentAgent, setCurrentAgent] = useState("auto");
+  
   const [inputValue, setInputValue] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);

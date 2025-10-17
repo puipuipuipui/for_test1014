@@ -188,6 +188,22 @@
   margin-top: 8px;
 }
 
+/* Model Selector */
+.modelSelector {
+  display: flex;
+  align-items: center;
+  padding-top: 8px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.modelSelector :global(.ant-select) {
+  font-size: 13px;
+}
+
+.modelSelector :global(.ant-select-selector) {
+  border-radius: 8px;
+}
+
 /* Empty State */
 .emptyState {
   display: flex;

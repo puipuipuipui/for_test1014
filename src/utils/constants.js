@@ -186,7 +186,7 @@ export const INITIAL_CHATS = [
 export const APP_CONFIG = {
   name: 'Enterprise AI',
   version: '1.0.0',
-  description: '企業級知識圖譜聊天機器人系統',
+  description: '知識圖譜聊天機器人系統',
   maxMessageLength: 5000,
   maxChatHistory: 100,
   autoSaveInterval: 30000, // 30秒自動保存

@@ -2,9 +2,9 @@
 
 import React from 'react';
 import { Button, Input, Space, Select } from 'antd';
-import { 
-  SendOutlined, 
-  CloseOutlined, 
+import {
+  SendOutlined,
+  CloseOutlined,
   LayoutOutlined,
   StopOutlined
 } from '@ant-design/icons';
@@ -17,6 +17,10 @@ const MainChat = ({
   activeChat,
   currentAgent,
   agents,
+  currentKnowledgeBase,
+  knowledgeBases,
+  currentLLMModel,
+  llmModels,
   inputValue,
   isLoading,
   isStreaming,
@@ -25,12 +29,14 @@ const MainChat = ({
   messagesEndRef,
   inputRef,
   onAgentChange,
+  onKnowledgeBaseChange,
+  onLLMModelChange,
   onInputChange,
   onSend,
   onToggleRight,
   onCancelRequest
 }) => {
-  
+  { console.log("-----------------------------" + streamingMessage) }
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -41,7 +47,7 @@ const MainChat = ({
   };
 
   return (
-    <div className={styles.mainChat}>
+    <div className={styles.container}>
       {/* Header */}
       <header className={styles.header}>
         <Space size="middle">
@@ -62,6 +68,17 @@ const MainChat = ({
               )
             }))}
           />
+          <Select
+            value={currentKnowledgeBase}
+            onChange={onKnowledgeBaseChange}
+            style={{ minWidth: 200 }}
+            placeholder="選擇知識庫"
+            options={knowledgeBases.map(kb => ({
+              value: kb.value,
+              label: kb.label,
+              title: kb.description
+            }))}
+          />
         </Space>
         <Space>
           <Button
@@ -80,10 +97,11 @@ const MainChat = ({
           {activeChat?.messages.map((msg, idx) => (
             <ChatMessage key={idx} message={msg} />
           ))}
-          
+
           {/* 串流中的訊息 */}
           {isStreaming && streamingMessage && (
             <div className={styles.streamingMessage}>
+              {console.log("-----------------------------" + streamingMessage)}
               <ChatMessage 
                 message={{
                   role: 'assistant',
@@ -93,11 +111,19 @@ const MainChat = ({
               />
             </div>
           )}
-          
+          {/* <div className={styles.streamingMessage}>
+            <ChatMessage
+              message={{
+                role: 'assistant',
+                content: streamingMessage,
+                isStreaming: true
+              }}
+            />
+          </div> */}
           {/* 載入中但還沒開始串流 */}
           {isLoading && !isStreaming && !streamingMessage && (
             <div className={styles.loadingMessage}>
-              <ChatMessage 
+              <ChatMessage
                 message={{
                   role: 'assistant',
                   content: '正在思考...',
@@ -106,7 +132,7 @@ const MainChat = ({
               />
             </div>
           )}
-          
+
           <div ref={messagesEndRef} />
         </div>
       </div>
@@ -127,7 +153,7 @@ const MainChat = ({
                   className={styles.textarea}
                   disabled={isLoading || isStreaming}
                 />
-                
+
                 {/* 發送或取消按鈕 */}
                 {isStreaming ? (
                   <Button
@@ -137,8 +163,8 @@ const MainChat = ({
                     size="large"
                     className={styles.sendBtn}
                   >
-                    停止
-                  </Button>
+
+                  </Button> // 停止按鈕
                 ) : (
                   <Button
                     type="primary"
@@ -149,8 +175,8 @@ const MainChat = ({
                     loading={isLoading && !isStreaming}
                     className={styles.sendBtn}
                   >
-                    
-                  </Button>
+
+                  </Button>// 發送按鈕
                 )}
               </div>
             </Space>

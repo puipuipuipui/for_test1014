@@ -19,8 +19,12 @@ const RightSidebar = ({
   activeTab,
   onTabChange,
   activeChat,
-  tabs
+  tabs,
+  kgData,
+  executionLog,
 }) => {
+  // console.log('✅ RightSidebar props:', { kgData, executionLog });
+  // console.log('✅ activeChat:', activeChat);
   if (!visible) return null;
 
   const renderTabContent = () => {
@@ -54,7 +58,7 @@ const RightSidebar = ({
                 </Card>
               ))
             ) : (
-              <Empty 
+              <Empty
                 description="尚無執行軌跡"
                 image={Empty.PRESENTED_IMAGE_SIMPLE}
               />
@@ -63,31 +67,56 @@ const RightSidebar = ({
         );
 
       case 'kg':
+        console.log('🔍 kg tab - kgData:', kgData);
         return (
-          <Card className={styles.emptyCard}>
-            <Empty 
-              description="知識圖譜資訊" 
-              image={Empty.PRESENTED_IMAGE_SIMPLE}
-            >
-              <Button 
-                type="primary" 
-                icon={<DatabaseOutlined />}
-                className={styles.actionBtn}
-              >
-                開啟圖譜管理
-              </Button>
-            </Empty>
-          </Card>
+          <div>
+            {kgData ? (
+              <Card title="知識圖譜資料">
+                <pre style={{
+                  background: '#f5f5f5',
+                  padding: '12px',
+                  borderRadius: '8px',
+                  maxHeight: '400px',
+                  overflow: 'auto'
+                }}>
+                  {JSON.stringify(kgData, null, 2)}
+                </pre>
+              </Card>
+            ) : (
+              <Card className={styles.emptyCard}>
+                <Empty
+                  description="知識圖譜資訊"
+                  image={Empty.PRESENTED_IMAGE_SIMPLE}
+                />
+              </Card>
+            )}
+          </div>
         );
 
       case 'sources':
         return (
-          <Card className={styles.emptyCard}>
-            <Empty 
-              description="來源資料將在查詢後顯示" 
-              image={Empty.PRESENTED_IMAGE_SIMPLE}
-            />
-          </Card>
+          <div>
+            {executionLog ? (
+              <Card title="執行日誌">
+                <pre style={{
+                  background: '#f5f5f5',
+                  padding: '12px',
+                  borderRadius: '8px',
+                  maxHeight: '400px',
+                  overflow: 'auto'
+                }}>
+                  {JSON.stringify(executionLog, null, 2)}
+                </pre>
+              </Card>
+            ) : (
+              <Card className={styles.emptyCard}>
+                <Empty
+                  description="執行日誌將在查詢後顯示"
+                  image={Empty.PRESENTED_IMAGE_SIMPLE}
+                />
+              </Card>
+            )}
+          </div>
         );
 
       case 'perf':

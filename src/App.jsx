@@ -47,6 +47,38 @@ function App() {
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [chatToDelete, setChatToDelete] = useState(null);
 
+  // 知識庫狀態
+  const [currentKnowledgeBase, setCurrentKnowledgeBase] = useState('all');
+
+  // 知識庫選項
+  const knowledgeBases = [
+    { value: 'all', label: '全域知識庫', description: '所有可用的知識資料集' },
+    { value: 'construction', label: '永續建築資料庫', description: '包含 LEED 與節能標準' },
+    { value: 'customer', label: '客戶訪談精選', description: '彙整新訪談重點與腳本文案' }
+  ];
+
+  // LLM 模型狀態
+  const [currentLLMModel, setCurrentLLMModel] = useState('gpt-5-codex-medium');
+
+  // LLM 模型選項
+  const llmModels = [
+    { value: 'gpt-5-codex-low', label: 'gpt-5-codex', description: 'low' },
+    { value: 'gpt-5-codex-medium', label: 'gpt-5-codex', description: 'medium' },
+    { value: 'gpt-5-codex-high', label: 'gpt-5-codex', description: 'high' },
+    { value: 'gpt-5-minimal', label: 'gpt-5', description: 'minimal' },
+    { value: 'gpt-5-low', label: 'gpt-5', description: 'low' },
+    { value: 'gpt-5-medium', label: 'gpt-5', description: 'medium' },
+    { value: 'gpt-5-high', label: 'gpt-5', description: 'high' }
+  ].map(model => ({
+    value: model.value,
+    label: (
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <span>{model.label}</span>
+        <span style={{ fontSize: '12px', color: '#999', marginLeft: '12px' }}>{model.description}</span>
+      </div>
+    )
+  }));
+
   // 使用聊天 Hook
   const {
     chats,
@@ -109,7 +141,6 @@ function App() {
       borderRadius: 12,
       fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', sans-serif"
     }
-
   };
 
   // 如果在圖譜管理頁面
@@ -117,7 +148,6 @@ function App() {
     return (
       <ConfigProvider theme={themeConfig}>
         <GraphManagement />
-        {/* onBack={backToChat} */}
       </ConfigProvider>
     );
   }
@@ -162,6 +192,11 @@ function App() {
               currentAgent={currentAgent}
               onAgentChange={setCurrentAgent}
               agents={AGENTS}
+              currentKnowledgeBase={currentKnowledgeBase}
+              onKnowledgeBaseChange={setCurrentKnowledgeBase}
+              knowledgeBases={knowledgeBases}
+              currentLLMModel={currentLLMModel}
+              llmModels={llmModels}
               rightExpanded={rightExpanded}
               onToggleRight={() => setRightExpanded(!rightExpanded)}
               activeChat={activeChat}
@@ -186,6 +221,8 @@ function App() {
           onTabChange={setActiveTab}
           activeChat={activeChat}
           tabs={TABS}
+          kgData={activeChat?.kgData}
+          executionLog={activeChat?.executionLog}
         />
       </Layout>
 
